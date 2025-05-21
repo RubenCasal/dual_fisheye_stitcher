@@ -1,10 +1,9 @@
 import cv2
 import numpy as np
-import concurrent.futures
 
 class DualFisheyeStitcher:
-    def __init__(self, fov, frame_width, frame_height, K):
-        self.K = K
+    def __init__(self, fov, frame_width, frame_height):
+    
         self.fov = fov
 
         # Shape of the raw fisheye frames
@@ -15,7 +14,7 @@ class DualFisheyeStitcher:
         self.overlap_percentage = self.calculate_overlapping_region()
 
         # Precompute dewarping lookup tables (LUTs)
-        self.map_x, self.map_y = self.precompute_dewarp_lut(self.frame_width, self.frame_height, self.fov, self.K)
+        self.map_x, self.map_y = self.precompute_dewarp_lut(self.frame_width, self.frame_height, self.fov)
 
         # Shape of the dewarped frames
         self.dewarped_height, self.dewarped_width = self.map_y.shape
@@ -50,7 +49,7 @@ class DualFisheyeStitcher:
 
         return result
 
-    def precompute_dewarp_lut(self, frame_width, frame_height, frame_fov, K):
+    def precompute_dewarp_lut(self, frame_width, frame_height, frame_fov):
         out_w = frame_width
         out_h = frame_height // 2 # Common for 180-degree vertical output for fisheye
 
@@ -71,8 +70,8 @@ class DualFisheyeStitcher:
         eps = 1e-8
         norm = np.sqrt(dx**2 + dy**2) + eps
 
-        map_x = (dx / norm) * r + K[0, 2]
-        map_y = (dy / norm) * r + K[1, 2]
+        map_x = (dx / norm) * r + frame_width/2
+        map_y = (dy / norm) * r + frame_height/2
 
         return map_x.astype(np.float32), map_y.astype(np.float32)
 

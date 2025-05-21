@@ -29,13 +29,8 @@ sub_right.connect("tcp://localhost:5556")
 sub_right.setsockopt(zmq.SUBSCRIBE, b"")
 sub_right.setsockopt(zmq.RCVHWM, 1)
 
-K = np.array([
-    [FRAME_WIDTH / 2, 0, FRAME_WIDTH / 2],
-    [0, FRAME_HEIGHT / 2, FRAME_HEIGHT / 2],
-    [0, 0, 1]
-])
 
-stitcher = DualFisheyeStitcher(FOV, FRAME_WIDTH, FRAME_HEIGHT, K)
+stitcher = DualFisheyeStitcher(FOV, FRAME_WIDTH, FRAME_HEIGHT)
 OVERLAP = stitcher.overlap_percentage
 print(OVERLAP)
 
