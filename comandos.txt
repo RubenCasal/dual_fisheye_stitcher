@@ -1,0 +1,11 @@
+
+Dividir el video de las dos imagenes fisheye
+
+ffmpeg -i ricoh_theta2.MP4 -filter:v "crop=1920:1920:0:0" -c:a copy ricoh_left_inverted2.mp4
+ffmpeg -i ricoh_theta2.MP4 -filter:v "crop=1920:1920:1920:0" -c:a copy ricoh_right_inverted2.mp4
+
+Rotar las imagenes divididas
+
+ffmpeg -i ricoh_left_inverted2.mp4 -vf "transpose=1" -c:a copy ricoh_left2.mp4
+ffmpeg -i ricoh_right_inverted2.mp4 -vf "transpose=2" -c:a copy ricoh_right2.mp4
+
