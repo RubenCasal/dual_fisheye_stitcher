@@ -76,7 +76,7 @@ panorama = stitcher.stitch_frames(left_img, right_img)
 ```
 
 <div align="center">
-  <img src="readme_images/demo_stitching.gif" alt="Single-Object-Tracking" width="500">
+  <img src="readme_images/demo_stitching.gif" alt="Single-Object-Tracking" width="650">
 </div>
 
 
