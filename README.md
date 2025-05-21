@@ -75,6 +75,12 @@ stitcher = DualFisheyeStitcher(fov=190, frame_width=960, frame_height=960)
 panorama = stitcher.stitch_frames(left_img, right_img)
 ```
 
+<div align="center">
+  <img src="readme_images/demo_stitching.gif" alt="Single-Object-Tracking" width="500">
+</div>
+
+
+
 ## Notes
 
 * The camera's field of view (FOV) must be greater than 180° to ensure sufficient overlap between the two fisheye images.
