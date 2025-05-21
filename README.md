@@ -4,10 +4,6 @@
 
 ## Class Overview
 
-```python
-class DualFisheyeStitcher:
-```
-
 This class handles:
 
 * Precomputing dewarping LUTs (lookup tables)
@@ -15,10 +11,6 @@ This class handles:
 * Merging both corrected fisheye frames into a panoramic frame
 
 ## Constructor
-
-```python
-__init__(fov, frame_width, frame_height)
-```
 
 ### Parameters:
 
@@ -85,6 +77,7 @@ panorama = stitcher.stitch_frames(left_img, right_img)
 
 ## Notes
 
+* The camera's field of view (FOV) must be greater than 180° to ensure sufficient overlap between the two fisheye images.
 * Assumes cameras are aligned horizontally with minimal tilt.
 * Overlap zone blending is linear; can be extended to multiband blending if needed.
-* The code is designed to run efficiently in real-time (\~30 FPS) using precomputed LUTs.
+* The code is optimized for real-time processing and achieves between 29–30 FPS under typical conditions using precomputed LUTs.
